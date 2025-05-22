@@ -1,0 +1,33 @@
+html {
+  
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important; 
+  background-color: #575555e3;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+input::placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
+input::-webkit-input-placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
+input::-moz-placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
+input:-ms-input-placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
+input:-moz-placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
