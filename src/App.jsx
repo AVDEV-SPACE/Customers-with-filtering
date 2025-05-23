@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import customersData from '../customers.json';
 import Tabel from './components/Tabel';
 import ClientDetails from './components/ClientDetails';
-import './index.css'; 
+import './index.css';
+import './App.css'; 
 
 function App() {
   const [customers, setCustomers] = useState([]);
@@ -21,16 +22,8 @@ function App() {
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center', 
-      alignItems: 'flex-start', 
-      width: '100vw',
-      minHeight: '100vh', 
-      backgroundColor: '#4947478f'  
-      }}>
-      <div style={{
-      }}>
+    <div id="app-container"> 
+      <div id="table-wrapper"> 
         <Tabel customers={customers} onSelectCustomer={handleSelectCustomer} />
       </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Row from './Row';
 import SearchBar from './SearchBar';
+import '../App.css'; 
 
 function Tabel({ customers, onSelectCustomer }) {
   // State for managing the search input value
@@ -12,7 +13,8 @@ function Tabel({ customers, onSelectCustomer }) {
   const customersWithTotalAmount = useMemo(() => {
     return customers.map(customer => ({
       ...customer,
-      totalAmount: customer.orders.reduce((sum, order) => sum + order.total, 0)
+      totalAmount: customer.orders.reduce(
+        (sum, order) => sum + order.total, 0)
     }));
   }, [customers]); // Recalculates only when 'customers' prop changes
 
@@ -44,43 +46,21 @@ function Tabel({ customers, onSelectCustomer }) {
   const commonControlWidth = '400px';
 
   return (
-    <div style={{ width: '100vw' }}>
-      <h1 style={{ textAlign:'center', marginBottom: '20px', color: 'white' }}>Customer Dashboard</h1>
+    <div id="tabel-container">
+      <h1 id="dashboard-title">Customer Dashboard</h1>
 
-      <div className='srch_filters'
-        style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '25px',
-        gap: '0.5rem',
-        width: '100%'
-      }}>
+      <div className='srch_filters' id="search-filters-container">
         {/* Search bar component for filtering customers */}
         <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} commonWidth={commonControlWidth} />
 
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          maxWidth: commonControlWidth
-        }}>
-          <label htmlFor="sort-customers" style={{ marginRight: '10px', color: '#eee' }}>Sort by Total Spent: </label>
+        <div id="sort-control-wrapper">
+          <label htmlFor="sort-customers" id="sort-label">Sort by Total Spent: </label>
           {/* Dropdown for selecting sort order */}
           <select
             id="sort-customers"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            style={{
-              padding: '8px',
-              borderRadius: '4px',
-              border: '1px solid #555',
-              backgroundColor: '#333',
-              color: '#007bff',
-              fontSize: '1em'
-            }}
+            className="sort-select"
           >
             <option value="none">None</option>
             <option value="asc">Ascending</option>
@@ -89,22 +69,14 @@ function Tabel({ customers, onSelectCustomer }) {
         </div>
       </div>
 
-      <div style={{ overflowX: 'auto', width: '70vw', margin: '0 auto' }}>
-        <table style={{
-          width: '70vw',
-          borderCollapse: 'collapse',
-          backgroundColor: '#333',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-          color: '#eee',
-          tableLayout: 'fixed'
-        }}>
+      <div id="table-wrapper-outer">
+        <table id="customer-table">
           <thead>
             <tr>
-              <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '1px solid #555', color: '#007bff', width: '25%' }}>Name</th>
-              <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '1px solid #555', color: '#007bff', width: '30%' }}>Email</th>
-              <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '1px solid #555', color: '#007bff', width: '20%' }}>Total Amount</th>
-              <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '1px solid #555', color: '#007bff', width: '15%' }}>Details</th>
+              <th className="table-header">Name</th>
+              <th className="table-header">Email</th>
+              <th className="table-header">Total Amount</th>
+              <th className="table-header">Details</th>
             </tr>
           </thead>
           <tbody>
